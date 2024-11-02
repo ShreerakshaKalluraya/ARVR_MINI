@@ -1,10 +1,10 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Canvas, useLoader, useFrame } from '@react-three/fiber';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import * as THREE from 'three';
 
-const TreadmillModel = ({ positionZ }) => {
+const TreadmillModel = ({ positionZ, updateDistance }) => {
     const treadmill = useLoader(GLTFLoader, '/models/scene2.glb');
     const ref = useRef();
 
@@ -27,7 +27,9 @@ const TreadmillModel = ({ positionZ }) => {
     useFrame(() => {
         if (ref.current) {
             ref.current.position.z += 0.005; // Move the treadmill forward
-            if (ref.current.position.z >25) { // Reset position when out of view
+            updateDistance(0.01); // Update distance traveled
+
+            if (ref.current.position.z > 20) { // Reset position when out of view
                 ref.current.position.z = positionZ; // Reset to initial position
             }
         }
@@ -55,17 +57,50 @@ const Lights = () => {
     );
 };
 
-const Scene = () => {
+// Component to display metrics
+const MetricsTab = ({ distance, calories }) => {
     return (
-        <Canvas style={{ height: '100vh', backgroundColor: '#f0f0f0' }} shadows>
-            <PerspectiveCamera makeDefault position={[0, 0, 0.1]} fov={75} near={0.1} far={1000} />
-            <Lights />
-            {/* Render multiple TreadmillModel instances with different initial z positions */}
-            <TreadmillModel positionZ={-9} />
-            <TreadmillModel positionZ={-10} />
-            <TreadmillModel positionZ={-9} />
-            <OrbitControls maxPolarAngle={Math.PI / 2} enableDamping={true} dampingFactor={0.25} />
-        </Canvas>
+        <div style={{
+            position: 'absolute',
+            top: 20,
+            left: 20,
+            padding: '10px',
+            backgroundColor: '#000000',
+            borderRadius: '8px',
+            width: '150px',
+            boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+            fontFamily: 'Arial, sans-serif',
+        }}>
+            <p>Kms Traveled: {(distance / 900).toFixed(2)} km</p>
+            <p>Calories Burnt: {calories.toFixed(2)} kcal</p>
+        </div>
+    );
+};
+
+const Scene = () => {
+    const [distance, setDistance] = useState(0);
+    const [calories, setCalories] = useState(0);
+
+    const updateDistance = (deltaZ) => {
+        setDistance((prevDistance) => {
+            const newDistance = prevDistance + deltaZ;
+            setCalories(newDistance * 0.05); // Simple calorie formula: adjust as needed
+            return newDistance;
+        });
+    };
+
+    return (
+        <>
+            <Canvas style={{ height: '100vh', backgroundColor: '#f0f0f0' }} shadows>
+                <PerspectiveCamera makeDefault position={[0, 0, 0.1]} fov={75} near={0.1} far={1000} />
+                <Lights />
+                <TreadmillModel positionZ={0} updateDistance={updateDistance} />
+                <TreadmillModel positionZ={-15} updateDistance={updateDistance} />
+                <TreadmillModel positionZ={-25} updateDistance={updateDistance} />
+                <OrbitControls maxPolarAngle={Math.PI / 2} enableDamping={true} dampingFactor={0.25} />
+            </Canvas>
+            <MetricsTab distance={distance} calories={calories} />
+        </>
     );
 };
 
