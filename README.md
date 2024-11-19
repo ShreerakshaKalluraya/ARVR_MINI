@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# TredFit - Virtual Fitness App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+TredFit is a virtual fitness application designed to provide an immersive workout experience in a virtual environment. The app leverages WebXR technology to create a 3D space where users can engage in various fitness activities. The application tracks user movement, calculates calories burned, and provides a visually appealing interface to enhance the workout experience.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Immersive VR Experience**: Utilizes WebXR to create a virtual environment for workouts.
+- **Calorie Tracking**: Calculates and displays calories burned based on user movement.
+- **User Data Collection**: Collects user data such as name, weight, height, and fitness milestones.
+- **Interactive UI**: Provides a user-friendly interface with welcome screens, forms, and success messages.
+- **3D Models**: Loads and displays 3D models of the workout environment.
+- **Score Display**: Shows the user's score and other relevant information during the workout.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To run TredFit locally, follow these steps:
 
-### `npm test`
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/yourusername/tredfit.git
+   cd tredfit
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Install Dependencies**:
+   Ensure you have Node.js and npm installed. Then, install the necessary dependencies:
+   ```bash
+   npm install
+   ```
 
-### `npm run build`
+3. **Run the Application**:
+   Start a local server to run the application. You can use any HTTP server, such as `http-server`:
+   ```bash
+   npm install -g http-server
+   http-server
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. **Access the Application**:
+   Open your web browser and navigate to `http://localhost:8080`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Usage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Welcome Screen**:
+   Upon loading the application, you will be greeted with a welcome screen. Click "Continue" to proceed.
 
-### `npm run eject`
+2. **User Form**:
+   Fill out the form with your name, weight, height, and fitness milestone. Click "Submit" to save your data.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Success Message**:
+   After submitting the form, a success message will appear. Click "I'm Ready" to enter the VR environment.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. **VR Environment**:
+   Once in the VR environment, you can start your workout. The application will track your movement, calculate calories burned, and display your score.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Code Structure
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **`init.js`**: Contains the main initialization logic for the VR environment, including scene setup, camera configuration, and WebXR integration.
+- **`index.js`**: Handles the loading of 3D models, text display, and the overall scene setup.
+- **`index.html`**: The main HTML file that structures the welcome screen, form, and success message.
 
-## Learn More
+## Dependencies
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Three.js**: A JavaScript 3D library used for rendering the VR environment.
+- **WebXR**: Provides support for immersive VR experiences in web browsers.
+- **GLTFLoader**: A loader for loading 3D models in GLTF format.
+- **Troika-three-text**: A library for rendering text in Three.js.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contributing
 
-### Code Splitting
+Contributions to TredFit are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## License
 
-### Analyzing the Bundle Size
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Acknowledgements
 
-### Making a Progressive Web App
+- The Three.js community for providing excellent documentation and examples.
+- The WebXR team for enabling immersive web experiences.
+- All contributors who help make TredFit a better application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Enjoy your virtual fitness journey with TredFit! 🚀
