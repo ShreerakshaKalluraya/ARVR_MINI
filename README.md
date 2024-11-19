@@ -19,7 +19,7 @@ To run TredFit locally, follow these steps:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/tredfit.git
+   git clone https://github.com/ShreerakshaKalluraya/ARVR_Virtualfit.git
    cd tredfit
    ```
 
@@ -30,10 +30,9 @@ To run TredFit locally, follow these steps:
    ```
 
 3. **Run the Application**:
-   Start a local server to run the application. You can use any HTTP server, such as `http-server`:
-   ```bash
-   npm install -g http-server
-   http-server
+   Use the following command to run the project:
+  ```
+npm run dev
    ```
 
 4. **Access the Application**:
